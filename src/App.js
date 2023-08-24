@@ -1,5 +1,5 @@
-// import logo from "./logo.svg";
 import "./App.scss";
+import 'font-awesome/css/font-awesome.min.css';
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Main from "./components/Main/Main";

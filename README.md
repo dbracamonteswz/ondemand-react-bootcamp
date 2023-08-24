@@ -1,3 +1,6 @@
+deploy
+gh-pages -b feat/deliverabled1-deploy -d build
+
 # Wizeline Academy - Ondemand React Bootcamp
 
 ## Overview
@@ -410,3 +413,5 @@ The following is the list of evaluation criteria for your deliverable:
 - Test cases for **Product Detail Page** (25 points)
 - Test cases for **Search Results Page** (10 points)
 - Test cases for **Shopping Cart Page** (40 points)
+
+
