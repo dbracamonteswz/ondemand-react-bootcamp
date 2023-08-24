@@ -3,15 +3,28 @@ import Slider from "../Slider/Slider";
 import productCategoriesMock from "../../mocks/en-us/product-categories.json";
 import featuredBannersMock from "../../mocks/en-us/featured-banners.json";
 import featuredProductsMock from "../../mocks/en-us/featured-products.json";
-import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
+import ProductListPage from "../ProductListPage/ProductListPage";
 
-const Main = () => {
+const Main = ({showHomePage, showAllProducts, onViewChange} ) => {
 
+   
   return (
     <main>
-        <Slider items={featuredBannersMock.results} />
-        <Carousel items={productCategoriesMock.results} />
-        <FeaturedProducts items={featuredProductsMock.results} />
+      {showHomePage && (
+        <>
+          <button onClick={() => onViewChange(false, true)}>View all products</button>
+          <h1>Home Page</h1>
+          <Slider items={featuredBannersMock.results} />
+          <Carousel items={productCategoriesMock.results} />
+        </>
+      )}
+
+      {showAllProducts && (
+        <>
+          <button onClick={() => onViewChange(true, false)}>Home Page</button>
+          <ProductListPage items={featuredProductsMock.results} />
+        </>
+      )}
     </main>
   );
 };

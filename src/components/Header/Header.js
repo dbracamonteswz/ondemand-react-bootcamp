@@ -1,9 +1,9 @@
 import logoEcommerce from "../../logo-ecommerce.png";
-const Header = () => {
+const Header = ({onViewChange}) => {
   return (
     <header>
       <nav>
-        <img src={logoEcommerce} className="app-logo" alt="app-logo" />
+        <img src={logoEcommerce} className="app-logo" alt="app-logo"  onClick={() => onViewChange(true,false)}/>
         <div className="search-container">
           <form action="/action_page.php">
             <input type="text" placeholder="Search.." name="search" />
