@@ -1,6 +1,4 @@
-const Card = ({
-  data: { name, price, category, url, alt, classSection },
-}) => {
+const Card = ({ name, price, category, url, alt, classSection }) => {
   return (
     <section className={classSection}>
       <h5>{name}</h5>

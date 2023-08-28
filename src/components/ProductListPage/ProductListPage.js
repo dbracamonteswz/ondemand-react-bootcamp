@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import productCategories from "../../mocks/en-us/product-categories.json";
-import mockProducts from "../../mocks/en-us/products.json";
+import productsMock from "../../mocks/en-us/products.json";
+import Card from "../Card/Card";
 
-const ProductListPage = ({ items }) => {
+const ProductListPage = () => {
   const [isLoading, setLoading] = useState(true);
-  const initProducts = mockProducts.results;
+  const initProducts = productsMock.results;
   const [products, setProducts] = useState(initProducts);
   const [filters, setFilters] = useState(new Map());
 
@@ -37,7 +38,9 @@ const ProductListPage = ({ items }) => {
   return (
     <>
       {isLoading ? (
-        <div className="loader"></div>
+        <div className="loader">
+          <i className="fa fa-spinner fa-spin"></i>
+        </div>
       ) : (
         <>
           <h1>This is the Product List Page</h1>
@@ -60,15 +63,15 @@ const ProductListPage = ({ items }) => {
             <article className="grid-columns">
               {products.map((item) => {
                 return (
-                  <section className="grid-section" key={item.id}>
-                    <h5>Name {item.data.name}</h5>
-                    <h5>Price {item.data.price}</h5>
-                    <h5>Category {item.data.category.slug}</h5>
-                    <img
-                      src={item.data.mainimage.url}
-                      alt={item.data.mainimage.alt}
-                    />
-                  </section>
+                  <Card
+                    key={item.id}
+                    name={item.data.name}
+                    price={item.data.price}
+                    category={item.data.category.slug}
+                    url={item.data.mainimage.url}
+                    alt={item.data.mainimage.alt}
+                    classSection="grid-section"
+                  />
                 );
               })}
             </article>

@@ -11,21 +11,18 @@ const Carousel = ({ items }) => {
     setCurrentItem(currentItem == items.length - 1 ? 0 : currentItem + 1);
   };
 
-  const getData = () => {
-    return {
-      name: items[currentItem].data.name,
-      url: items[currentItem].data.main_image.url,
-      alt: items[currentItem].data.main_image.alt,
-      classSection: "carousel_main",
-    };
-  };
-
   return (
     <>
-      <Card data={getData()} />
+      <Card
+        key={items[currentItem].id}
+        name={items[currentItem].data.name}
+        url={items[currentItem].data.main_image.url}
+        alt={items[currentItem].data.main_image.alt}
+        classSection="carousel_main"
+      />
       <section className="carousel_controls">
-        <button onClick={() => handledClickPrevious()}>Previous</button>
-        <button onClick={() => handledClickNext()}>Next</button>
+        <button onClick={handledClickPrevious}>Previous</button>
+        <button onClick={handledClickNext}>Next</button>
       </section>
     </>
   );

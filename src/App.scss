@@ -74,6 +74,10 @@ body {
     grid-area: main;
     padding: var(--main-spacing);
 
+    #show-products-btn {
+      margin-bottom: 20px;
+    }
+
     .slider-columns {
       width: 100%;
       display: flex;
@@ -106,13 +110,8 @@ body {
     }
 
     .loader {
-      border: 16px solid #f3f3f3;
-      border-radius: 50%;
-      border-top: 16px solid #3498db;
-      width: 120px;
-      height: 120px;
-      -webkit-animation: spin 2s linear infinite; /* Safari */
-      animation: spin 2s linear infinite;
+      font-size: 60px;
+      padding: 20px;
     }
 
     .product-list-wrapper {
@@ -121,7 +120,7 @@ body {
     }
 
     .product-list-wrapper aside {
-      padding: 1%;
+      padding: 1.5%;
       ul {
         list-style: none;
         padding-inline-start: 0px;
