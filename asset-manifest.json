@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/ondemand-react-bootcamp/static/css/main.18396d63.css",
+    "main.js": "/ondemand-react-bootcamp/static/js/main.819b9b19.js",
+    "static/js/787.8626abe6.chunk.js": "/ondemand-react-bootcamp/static/js/787.8626abe6.chunk.js",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/ondemand-react-bootcamp/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/fontawesome-webfont.eot": "/ondemand-react-bootcamp/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/ondemand-react-bootcamp/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "/ondemand-react-bootcamp/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/ondemand-react-bootcamp/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "static/media/logo-ecommerce.png": "/ondemand-react-bootcamp/static/media/logo-ecommerce.359baa9a0f4511a55f5e.png",
+    "index.html": "/ondemand-react-bootcamp/index.html",
+    "main.18396d63.css.map": "/ondemand-react-bootcamp/static/css/main.18396d63.css.map",
+    "main.819b9b19.js.map": "/ondemand-react-bootcamp/static/js/main.819b9b19.js.map",
+    "787.8626abe6.chunk.js.map": "/ondemand-react-bootcamp/static/js/787.8626abe6.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.18396d63.css",
+    "static/js/main.819b9b19.js"
+  ]
+}
