@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Card from "../Card/Card";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const Carousel = ({ items }) => {
   const [currentItem, setCurrentItem] = useState(0);
@@ -21,11 +23,23 @@ const Carousel = ({ items }) => {
         classSection="carousel_main"
       />
       <section className="carousel_controls">
+        <Link
+          to={{
+            pathname: "/products",
+            search: `?category=${encodeURIComponent(items[currentItem].data.name)}`
+          }}
+        >
+          <button>Go to Products</button>
+        </Link>
         <button onClick={handledClickPrevious}>Previous</button>
         <button onClick={handledClickNext}>Next</button>
       </section>
     </>
   );
+};
+
+Carousel.propTypes = {
+  items: PropTypes.array.isRequired
 };
 
 export default Carousel;

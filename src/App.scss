@@ -78,35 +78,66 @@ body {
       margin-bottom: 20px;
     }
 
+    .pagination-container {
+      text-align: center;
+      padding: 1.5%;
+
+      button {
+        padding: 8px 16px;
+        text-decoration: none;
+        margin-right: 1%;
+        border: none;
+      }
+
+      button:hover {
+        background-color: gray;
+      }
+
+      button.active {
+        background-color: #7cb9e8;
+      }
+    }
+
     .slider-columns {
       width: 100%;
       display: flex;
+
+      > * {
+        width: calc(100% / 3);
+      }
+
+      > * > img {
+        width: 541px;
+      }
+
+      > * > h5 {
+        margin: 0px;
+      }
     }
 
-    .slider-columns > * {
-      width: calc(100% / 3);
+    .slider_controls button {
+      margin-right: 1%;
+      min-width: 70px;
     }
 
-    .slider-columns > * > img {
-      width: 541px;
-    }
-
-    .grid-columns > * > h5 {
-      margin: 0px;
+    .carousel_controls button {
+      margin-right: 1%;
+      min-width: 80px;
     }
 
     .grid-columns {
       display: flex;
       flex-wrap: wrap;
-    }
 
-    .grid-columns > * {
-      flex-grow: 1;
-      width: 33%;
-    }
+      > * {
+        flex-grow: 1;
+        width: 20%;
+      }
 
-    .grid-columns > * > img {
-      width: 400px;
+      > * > img {
+        padding-top: 15px;
+        width: 150px;
+      }
     }
 
     .loader {
@@ -124,6 +155,188 @@ body {
       ul {
         list-style: none;
         padding-inline-start: 0px;
+      }
+    }
+
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      max-width: 70%;
+      margin: auto;
+      text-align: center;
+      font-family: arial;
+    }
+
+    .grid-section {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      max-width: 300px;
+      margin: 0.2%;
+      text-align: center;
+
+      .shopping-controls {
+        button {
+          border: none;
+          outline: 0;
+          display: inline-block;
+          padding: 8px;
+          color: white;
+          background-color: #7cb9e8;
+          text-align: center;
+          cursor: pointer;
+          width: 100%;
+          font-size: 18px;
+        }
+
+        a {
+          text-decoration: none;
+          font-size: 22px;
+          color: black;
+        }
+
+        margin-top: 15px;
+      }
+
+      .counter {
+        background-color: #7cb9e8;
+
+        button {
+          width: 10px;
+          padding-right: 30px;
+        }
+
+        input {
+          width: 30px;
+        }
+      }
+
+      .btn-details {
+        color: #fff;
+        background-color: #7cb9e8;
+        border: none;
+        outline: 0;
+        padding: 8px;
+      }
+
+      button:hover,
+      a:hover {
+        opacity: 0.7;
+      }
+    }
+
+    .product-card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      margin: auto;
+      text-align: center;
+      font-family: arial;
+
+      .tag {
+        margin: 0px 8px;
+        display: inline-block;
+        padding-left: 8px;
+        padding-right: 8px;
+        text-align: center;
+      }
+
+      .blue-tag {
+        color: #fff !important;
+        background-color: #2196f3 !important;
+      }
+
+      .green-tag {
+        color: #fff !important;
+        background-color: #009688 !important;
+      }
+
+      .swiper {
+        width: 100%;
+        padding-top: 50px;
+        padding-bottom: 50px;
+      }
+
+      .swiper-slide {
+        background-position: center;
+        background-size: cover;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+      }
+
+      .price {
+        color: grey;
+        font-size: 22px;
+      }
+
+      button {
+        border: none;
+        outline: 0;
+        padding: 12px;
+        color: white;
+        background-color: #7cb9e8;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+      }
+
+      button:hover {
+        opacity: 0.7;
+      }
+
+      .counter {
+        background-color: #7cb9e8;
+
+        button {
+          width: 10px;
+          padding-right: 30px;
+        }
+
+        input {
+          width: 30px;
+        }
+      }
+
+      .description {
+        text-align: left;
+        padding: 3%;
+      }
+
+      .table-specs {
+        .row {
+          margin-left: -5px;
+          margin-right: -5px;
+        }
+
+        .column {
+          float: left;
+          width: 50%;
+          padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+          content: "";
+          clear: both;
+          display: table;
+        }
+
+        table {
+          border-collapse: collapse;
+          border-spacing: 0;
+          width: 100%;
+          border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+          text-align: left;
+          padding: 16px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #f2f2f2;
+        }
       }
     }
 

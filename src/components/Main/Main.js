@@ -1,29 +1,30 @@
 import Carousel from "../Carousel/Carousel";
 import Slider from "../Slider/Slider";
-import productCategoriesMock from "../../mocks/en-us/product-categories.json";
-import featuredBannersMock from "../../mocks/en-us/featured-banners.json";
-import featuredProductsMock from "../../mocks/en-us/featured-products.json";
-import ProductListPage from "../ProductListPage/ProductListPage";
 import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
+import { useFeaturedBanners } from "../../utils/hooks/useFeaturedBanners";
+import { useFeaturedProducts } from "../../utils/hooks/useFeaturedProducts";
+import ShareDataContext from "../../context/shareDataContext";
+import { useContext } from "react";
 
-const Main = ({showHomePage, showAllProducts, onViewChange} ) => {
+const Main = () => {
+  const featuredBanners = useFeaturedBanners();
+  const featuredProducts = useFeaturedProducts();
+  const productCategories = useContext(ShareDataContext).productCategories;
 
-   
   return (
     <main>
-      {showHomePage && (
+      {featuredBanners.isLoading ||
+      productCategories.isLoading ||
+      featuredProducts.isLoading ? (
+        <div className="loader">
+          <i className="fa fa-spinner fa-spin"></i>
+        </div>
+      ) : (
         <>
           <h1>Home Page</h1>
-          <Slider items={featuredBannersMock.results} />
-          <Carousel items={productCategoriesMock.results} />
-          <FeaturedProducts items={featuredProductsMock.results} handleViewChange={onViewChange}/>
-        </>
-      )}
-
-      {showAllProducts && (
-        <>
-          <button onClick={() => onViewChange(true, false)}>Home Page</button>
-          <ProductListPage items={featuredProductsMock.results} />
+          <Slider items={featuredBanners.data.results} />
+          <Carousel items={productCategories.data.results} />
+          <FeaturedProducts items={featuredProducts.data.results} />
         </>
       )}
     </main>

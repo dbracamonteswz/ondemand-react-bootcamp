@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Card from "../Card/Card";
+import PropTypes from "prop-types";
 
 const Slider = ({ items }) => {
   const [showItems, setShowItems] = useState(items);
@@ -38,6 +39,10 @@ const Slider = ({ items }) => {
       </section>
     </>
   );
+};
+
+Slider.propTypes = {
+  items: PropTypes.array.isRequired
 };
 
 export default Slider;
