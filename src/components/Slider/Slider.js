@@ -19,6 +19,16 @@ const Slider = ({ items }) => {
     ]);
   };
 
+  const getData = (item) => {
+    return {
+      name: item.data.title,
+      url: item.data.main_image.url,
+      alt: item.data.main_image.alt,
+      classSection: "slider_section",
+      classArticle: "slider-columns",
+    };
+  };
+
   return (
     <>
       <h1>Slider Section</h1>

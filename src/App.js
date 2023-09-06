@@ -22,10 +22,11 @@ const App = () => {
           <Header />
           <Routes>
             <Route index element={<Main />}></Route>
-            <Route exact path="/home" element={<Main />}></Route>
+            <Route path="/home" element={<Main />}></Route>
             <Route path="/products" element={<ProductListPage />}></Route>
             <Route path="/products/:productId" element={<ProductDetail />}></Route>
             <Route path="/search" element={<SearchResult />}></Route>
+            <Route path="*" element={<Main />}></Route>
           </Routes>
           <Footer />
         </div>
