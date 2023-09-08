@@ -1,7 +1,6 @@
 import React, { useContext, useReducer } from "react";
 import { formatMoney } from "../../utils/formatUtils";
 import { Link } from "react-router-dom";
-import { ShoppingCartContext } from "../../utils/context/ShoppingCartContext";
 import { ShoppingStateActions } from "../../utils/reducers/ShoppingCartReducer";
 
 const Cart = ({shoppingCartState,dispatchShoppingCart}) => {
