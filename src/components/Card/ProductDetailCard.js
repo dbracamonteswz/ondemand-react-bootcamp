@@ -8,17 +8,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import PropTypes from "prop-types";
+import {formatMoney} from "../../utils/formatUtils";
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, EffectFade, Autoplay]);
 
 const ProductDetailCard = ({ product }) => {
-  const formatMoney = (value) =>
-    new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(value);
-
   return (
     <section className="product-card">
       <Swiper

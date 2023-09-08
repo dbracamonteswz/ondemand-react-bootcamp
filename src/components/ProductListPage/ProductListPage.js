@@ -2,21 +2,21 @@ import { useEffect, useState, useContext, useRef } from "react";
 import { useLocation, Outlet } from "react-router-dom";
 import ProductGridCard from "../Card/ProductGridCard";
 import { Link } from "react-router-dom";
-import { useProducts } from "../../utils/hooks/useProducts";
-import ShareDataContext from "../../context/shareDataContext";
 import Pagination from "../Pagination/Pagination";
+import { useRequest } from "../../utils/hooks/useRequest";
+import { CATEGORIES_QUERY, PRODUCTS_QUERY } from "../../utils/constants";
 
 const ProductListPage = () => {
   const queryParams = new URLSearchParams(useLocation().search);
   const [initProducts, setInitProducts] = useState();
   const [products, setProducts] = useState(initProducts);
   const [categoryFilters, setCategoryFilters] = useState([]);
-  const productCategories = useContext(ShareDataContext).productCategories;
+  const productCategories = useRequest(CATEGORIES_QUERY);
   const categoryParam = queryParams.get("category")?.toLocaleLowerCase();
   const [page, setPage] = useState(1);
   const pageSize = 12;
   const ref = useRef([]);
-  const productsHook = useProducts(page, pageSize);
+  const productsHook = useRequest(PRODUCTS_QUERY(pageSize, page));
 
   const handleSetPage = (newPage) => {
     setPage(newPage);
@@ -28,6 +28,15 @@ const ProductListPage = () => {
     }
 
     setCategoryFilters([]);
+  };
+
+  const setCheckBoxes = () => {
+    for (var i = 0; i < ref.current.children.length; i++) {
+      categoryFilters.forEach((category) => {
+        if (ref.current.children[i].children[0].value.toLowerCase() == category)
+          ref.current.children[i].children[0].checked = true;
+      });
+    }
   };
 
   const changeCategoryFilter = (event) => {
@@ -59,12 +68,15 @@ const ProductListPage = () => {
         setCategoryFilters((prevFilters) => [...prevFilters, categoryParam]);
       setInitProducts(productsHook.data.results);
       setProducts(productsHook.data.results);
+      setCheckBoxes();
     }
   }, [productsHook.isLoading]);
 
+  const showLoading = productCategories.isLoading || productsHook.isLoading;
+
   return (
     <main>
-      {productCategories.isLoading || productsHook.isLoading ? (
+      {showLoading ? (
         <div className="loader">
           <i className="fa fa-spinner fa-spin"></i>
         </div>

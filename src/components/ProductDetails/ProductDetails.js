@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useProductDetails } from "../../utils/hooks/useProductDetails";
+import { useRequest } from "../../utils/hooks/useRequest";
 import { useParams } from "react-router-dom";
 import ProductDetailCard from "../Card/ProductDetailCard";
+import { PRODUCT_DETAIL_QUERY } from "../../utils/constants";
 
 const ProductDetail = () => {
   const { productId } = useParams();
-  const productDetailsHook = useProductDetails(productId);
+  const productDetailsHook = useRequest(PRODUCT_DETAIL_QUERY(productId));
   const [product, setProduct] = useState();
 
   useEffect(() => {
@@ -14,13 +15,15 @@ const ProductDetail = () => {
     }
   }, [productDetailsHook.isLoading]);
 
-  return productDetailsHook.isLoading ? (
+  const showLoading = productDetailsHook.isLoading;
+
+  return showLoading ? (
     <div className="loader">
       <i className="fa fa-spinner fa-spin"></i>
     </div>
   ) : product ? (
     <main>
-      <ProductDetailCard product={product}/>
+      <ProductDetailCard product={product} />
     </main>
   ) : (
     <div>Product not found</div>

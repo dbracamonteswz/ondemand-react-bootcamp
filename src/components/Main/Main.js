@@ -1,21 +1,22 @@
 import Carousel from "../Carousel/Carousel";
 import Slider from "../Slider/Slider";
 import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
-import { useFeaturedBanners } from "../../utils/hooks/useFeaturedBanners";
-import { useFeaturedProducts } from "../../utils/hooks/useFeaturedProducts";
-import ShareDataContext from "../../context/shareDataContext";
-import { useContext } from "react";
+import { useRequest } from "../../utils/hooks/useRequest";
+import { CATEGORIES_QUERY, FEATURED_PRODUCTS_QUERY, FEATURED_BANNERS_QUERY} from "../../utils/constants";
 
 const Main = () => {
-  const featuredBanners = useFeaturedBanners();
-  const featuredProducts = useFeaturedProducts();
-  const productCategories = useContext(ShareDataContext).productCategories;
+  const featuredBanners = useRequest(FEATURED_BANNERS_QUERY);
+  const featuredProducts = useRequest(FEATURED_PRODUCTS_QUERY);
+  const productCategories = useRequest(CATEGORIES_QUERY);
+
+  const showLoading =
+    featuredBanners.isLoading ||
+    productCategories.isLoading ||
+    featuredProducts.isLoading;
 
   return (
     <main>
-      {featuredBanners.isLoading ||
-      productCategories.isLoading ||
-      featuredProducts.isLoading ? (
+      {showLoading ? (
         <div className="loader">
           <i className="fa fa-spinner fa-spin"></i>
         </div>
