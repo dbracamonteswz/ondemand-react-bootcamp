@@ -1,13 +1,16 @@
 import logoEcommerce from "../../logo-ecommerce.png";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ShoppingCartContext } from "../../utils/context/ShoppingCartContext";
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleChange = (e) => {  
-      setSearchTerm(e.target.value);
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
   };
+
+  const [shoppingCart] = useContext(ShoppingCartContext);
 
   return (
     <header>
@@ -24,9 +27,12 @@ const Header = () => {
               value={searchTerm}
               onChange={handleChange}
             />
-            <button type="submit" id="shopping-cart-btn">
-              <i className="fa fa-shopping-cart"></i>
-            </button>
+            <Link to="/cart">
+              <button id="shopping-cart-btn">
+                <i className="fa fa-shopping-cart"></i>
+                <span id="lblCartCount">{shoppingCart.count}</span>
+              </button>
+            </Link>
             <Link
               to={{
                 pathname: "/search",

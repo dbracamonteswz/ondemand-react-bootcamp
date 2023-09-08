@@ -1,0 +1,100 @@
+import { ShoppingCartContext } from "../../utils/context/ShoppingCartContext";
+import { useContext } from "react";
+
+const Checkout = () => {
+  const [shoppingCart] = useContext(ShoppingCartContext);
+  const isShoppingCartEmpty = shoppingCart.count === 0;
+
+  return (
+    <main>
+      <section className="checkout">
+        {isShoppingCartEmpty ? (
+          <h2>ShoppingCart is empty</h2>
+        ) : (
+          <form>
+            <div className="row">
+              <div className="col-25">
+                <label htmlFor="name">Name</label>
+              </div>
+              <div className="col-75">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Your name.."
+                />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-25">
+                <label htmlFor="email">Email</label>
+              </div>
+              <div className="col-75">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Your email.."
+                />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-25">
+                <label htmlFor="zipcode">Zip Code</label>
+              </div>
+              <div className="col-75">
+                <input
+                  type="text"
+                  id="zipcode"
+                  name="zipcode"
+                  placeholder="Your zip code.."
+                />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-25">
+                <label htmlFor="notes">Notes</label>
+              </div>
+              <div className="col-75">
+                <textarea
+                  id="notes"
+                  name="notes"
+                  placeholder="Write any note.."
+                  style={{ height: "200px" }}
+                ></textarea>
+              </div>
+            </div>
+            <div className="row">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>SubTotal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {shoppingCart.cartInfo.map((cartItem, index) => (
+                    <tr key={index}>
+                      <td>{cartItem.name}</td>
+                      <td>{cartItem.quantity}</td>
+                      <td>{cartItem.price}</td>
+                      <td>{cartItem.price * cartItem.quantity}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <br />
+            <div className="row">
+              <button>Submit</button>
+            </div>
+          </form>
+        )}
+      </section>
+    </main>
+  );
+};
+
+export default Checkout;
