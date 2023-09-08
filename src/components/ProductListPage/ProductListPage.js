@@ -10,7 +10,7 @@ const ProductListPage = () => {
   const queryParams = new URLSearchParams(useLocation().search);
   const [initProducts, setInitProducts] = useState();
   const [products, setProducts] = useState(initProducts);
-  const [filters, setFilters] = useState(new Map());
+  const [categoryFilters, setCategoryFilters] = useState([]);
   const productCategories = useContext(ShareDataContext).productCategories;
   const categoryParam = queryParams.get("category")?.toLocaleLowerCase();
   const [page, setPage] = useState(1);
@@ -22,40 +22,41 @@ const ProductListPage = () => {
     setPage(newPage);
   };
 
-  const handleClearFilters = () => {
+  const clearCategoryFilters = () => {
     for (var i = 0; i < ref.current.children.length; i++) {
       ref.current.children[i].children[0].checked = false;
     }
 
-    setFilters(new Map());
+    setCategoryFilters([]);
   };
 
-  const handleChange = (event) => {
+  const changeCategoryFilter = (event) => {
     const isChecked = event.target.checked;
-    const value = event.target.value.toLowerCase();
+    const category = event.target.value.toLowerCase();
 
-    setFilters((map) => {
-      if (!isChecked) map.delete(value);
-      else map.set(event.target.value.toLowerCase(), event.target.checked);
-
-      return new Map(map);
+    setCategoryFilters((prevCategoryFilters) => {
+      if (isChecked) {
+        return [...prevCategoryFilters, category];
+      } else {
+        return prevCategoryFilters.filter((cat) => cat != category);
+      }
     });
   };
 
   useEffect(() => {
     setProducts(
-      filters.size == 0
+      categoryFilters.length == 0
         ? initProducts
         : initProducts.filter((product) =>
-            filters.get(product.data.category.slug.toLocaleLowerCase())
+            categoryFilters.includes(product.data.category.slug.toLowerCase())
           )
     );
-  }, [filters]);
+  }, [categoryFilters]);
 
   useEffect(() => {
     if (!productsHook.isLoading) {
       if (categoryParam)
-        setFilters((map) => new Map(map.set(categoryParam, true)));
+        setCategoryFilters((prevFilters) => [...prevFilters, categoryParam]);
       setInitProducts(productsHook.data.results);
       setProducts(productsHook.data.results);
     }
@@ -82,7 +83,7 @@ const ProductListPage = () => {
                       type="checkbox"
                       name={category.data.name}
                       value={category.data.name}
-                      onChange={(event) => handleChange(event)}
+                      onChange={changeCategoryFilter}
                       defaultChecked={
                         category.data.name.toLowerCase() == categoryParam
                       }
@@ -91,7 +92,7 @@ const ProductListPage = () => {
                   </li>
                 ))}
               </ul>
-              <button onClick={handleClearFilters}>Clear Filters</button>
+              <button onClick={clearCategoryFilters}>Clear Filters</button>
             </aside>
             <article className="grid-columns">
               {products && products.length > 0 ? (
@@ -110,15 +111,15 @@ const ProductListPage = () => {
               ) : (
                 <label>No products found with the categories selected</label>
               )}
-            </article>    
+            </article>
           </div>
           <div>
-              <Pagination 
-                page={page}
-                totalPages={productsHook.data.total_pages}
-                handleSetPage={handleSetPage}
-              />
-            </div>
+            <Pagination
+              page={page}
+              totalPages={productsHook.data.total_pages}
+              handleSetPage={handleSetPage}
+            />
+          </div>
           <Outlet />
         </>
       )}
