@@ -50,6 +50,7 @@ const SearchResult = () => {
                     alt={item.data.mainimage.alt}
                     id={item.id}
                     classSection="grid-section"
+                    stock={item.data.stock}
                   />
                 ))
               ) : (

@@ -8,12 +8,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import PropTypes from "prop-types";
-import {formatMoney} from "../../utils/formatUtils";
+import { formatMoney } from "../../utils/formatUtils";
+import ShoppingControls from "../ShoppingControls/ShoppingControls";
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, EffectFade, Autoplay]);
 
 const ProductDetailCard = ({ product }) => {
+
   return (
     <section className="product-card">
       <Swiper
@@ -37,7 +39,12 @@ const ProductDetailCard = ({ product }) => {
       <p>
         <span className="tag">Tags</span>
         {product.tags.map((tag, index) => (
-          <span key={index} className={index%2 == 0 ? "tag blue-tag" : "tag green-tag"}>{tag}</span>
+          <span
+            key={index}
+            className={index % 2 == 0 ? "tag blue-tag" : "tag green-tag"}
+          >
+            {tag}
+          </span>
         ))}
       </p>
       <table className="table-specs">
@@ -56,20 +63,21 @@ const ProductDetailCard = ({ product }) => {
           ))}
         </tbody>
       </table>
-      <div>
-        <div className="counter">
-          <button className="fa fa-minus-circle" />
-          <input type="text" value="1"  readOnly/>
-          <button className="fa fa-plus-circle" />
-        </div>
-        <button>Add to Cart</button>
-      </div>
+      <ShoppingControls
+        cartItem={{
+          id: product.id,
+          name: product.data.name,
+          price: product.data.price,
+          stock: product.data.stock,
+          imageUrl: product.data.mainimage.url
+        }}
+      />
     </section>
   );
 };
 
 ProductDetailCard.propTypes = {
-  product: PropTypes.object.isRequired
+  product: PropTypes.object.isRequired,
 };
 
 export default ProductDetailCard;

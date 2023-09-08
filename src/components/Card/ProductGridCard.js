@@ -1,6 +1,9 @@
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { formatMoney } from "../../utils/formatUtils";
+import ShoppingControls from "../ShoppingControls/ShoppingControls";
+import { ShoppingCartContext } from "../../utils/context/ShoppingCartContext";
 
 const ProductGridCard = ({
   name,
@@ -10,7 +13,11 @@ const ProductGridCard = ({
   alt,
   classSection,
   id,
+  stock,
 }) => {
+  const [shoppingCartState, dispatchShoppingCart] =
+    useContext(ShoppingCartContext);
+
   return (
     <section className={classSection}>
       <img src={url} alt={alt} />
@@ -21,14 +28,16 @@ const ProductGridCard = ({
       <Link to={`/products/${id}`}>
         <button className="btn-details">Go to Details</button>
       </Link>
-      <div className="shopping-controls">
-        <div className="counter">
-          <button className="fa fa-minus-circle" />
-          <input type="text" defaultValue="1" readOnly />
-          <button className="fa fa-plus-circle" />
-        </div>
-        <button>Add to Cart</button>
-      </div>
+
+      <ShoppingControls shoppingCartState={shoppingCartState} dispatchShoppingCart={dispatchShoppingCart}
+        cartItem={{
+          name: name,
+          price: price,
+          stock: stock,
+          id: id,
+          imageUrl: url,
+        }}
+      />
     </section>
   );
 };
@@ -40,7 +49,7 @@ ProductGridCard.propTypes = {
   url: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
   classSection: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
 };
 
 export default ProductGridCard;
