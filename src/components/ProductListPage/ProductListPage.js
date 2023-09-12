@@ -10,65 +10,61 @@ const ProductListPage = () => {
   const queryParams = new URLSearchParams(useLocation().search);
   const [initProducts, setInitProducts] = useState();
   const [products, setProducts] = useState(initProducts);
-  const [categoryFilters, setCategoryFilters] = useState([]);
   const productCategories = useRequest(CATEGORIES_QUERY);
   const categoryParam = queryParams.get("category")?.toLocaleLowerCase();
   const [page, setPage] = useState(1);
   const pageSize = 12;
   const ref = useRef([]);
   const productsHook = useRequest(PRODUCTS_QUERY(pageSize, page));
+  const [checkedCategoryState, setCheckedCategoryState] = useState([]);
+
+  const handleChangeCategory = (event) => {
+    const isChecked = event.target.checked;
+    const category = event.target.value.toLowerCase();
+
+    setCheckedCategoryState((prevCategoryFilters) => {
+      if (isChecked) {
+        return [...prevCategoryFilters, category];
+      } else {
+        return prevCategoryFilters.filter(
+          (categoryName) => categoryName != category
+        );
+      }
+    });
+  };
+
+  const isCheckedCategory = (categoryName) =>
+    checkedCategoryState.findIndex(
+      (category) => category === categoryName.toLowerCase()
+    ) != -1;
 
   const handleSetPage = (newPage) => {
     setPage(newPage);
   };
 
-  const clearCategoryFilters = () => {
-    for (var i = 0; i < ref.current.children.length; i++) {
-      ref.current.children[i].children[0].checked = false;
-    }
-
-    setCategoryFilters([]);
-  };
-
-  const setCheckBoxes = () => {
-    for (var i = 0; i < ref.current.children.length; i++) {
-      categoryFilters.forEach((category) => {
-        if (ref.current.children[i].children[0].value.toLowerCase() == category)
-          ref.current.children[i].children[0].checked = true;
-      });
-    }
-  };
-
-  const changeCategoryFilter = (event) => {
-    const isChecked = event.target.checked;
-    const category = event.target.value.toLowerCase();
-
-    setCategoryFilters((prevCategoryFilters) => {
-      if (isChecked) {
-        return [...prevCategoryFilters, category];
-      } else {
-        return prevCategoryFilters.filter((cat) => cat != category);
-      }
-    });
-  };
-
   useEffect(() => {
-    setProducts(
-      categoryFilters.length == 0
-        ? initProducts
-        : initProducts.filter((product) =>
-            categoryFilters.includes(product.data.category.slug.toLowerCase())
-          )
-    );
-  }, [categoryFilters]);
+    if (!productsHook.isLoading) {
+      setProducts(
+        checkedCategoryState.length == 0
+          ? initProducts
+          : initProducts.filter((product) =>
+              checkedCategoryState.includes(
+                product.data.category.slug.toLowerCase()
+              )
+            )
+      );
+    }
+  }, [checkedCategoryState]);
 
   useEffect(() => {
     if (!productsHook.isLoading) {
       if (categoryParam)
-        setCategoryFilters((prevFilters) => [...prevFilters, categoryParam]);
+        setCheckedCategoryState((prevFilters) => [
+          ...prevFilters,
+          categoryParam,
+        ]);
       setInitProducts(productsHook.data.results);
       setProducts(productsHook.data.results);
-      setCheckBoxes();
     }
   }, [productsHook.isLoading]);
 
@@ -89,22 +85,22 @@ const ProductListPage = () => {
           <div className="product-list-wrapper">
             <aside>
               <ul ref={ref}>
-                {productCategories.data.results.map((category) => (
+                {productCategories.data.results.map((category, index) => (
                   <li key={category.id}>
                     <input
                       type="checkbox"
                       name={category.data.name}
                       value={category.data.name}
-                      onChange={changeCategoryFilter}
-                      defaultChecked={
-                        category.data.name.toLowerCase() == categoryParam
-                      }
+                      onChange={handleChangeCategory}
+                      checked={isCheckedCategory(category.data.name)}
                     />
                     {category.data.name}
                   </li>
                 ))}
               </ul>
-              <button onClick={clearCategoryFilters}>Clear Filters</button>
+              <button onClick={() => setCheckedCategoryState([])}>
+                Clear Filters
+              </button>
             </aside>
             <article className="grid-columns">
               {products && products.length > 0 ? (
