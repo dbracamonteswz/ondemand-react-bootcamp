@@ -1,17 +1,33 @@
 import Carousel from "../Carousel/Carousel";
 import Slider from "../Slider/Slider";
-import productCategoriesMock from "../../mocks/en-us/product-categories.json";
-import featuredBannersMock from "../../mocks/en-us/featured-banners.json";
-import featuredProductsMock from "../../mocks/en-us/featured-products.json";
 import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
+import { useRequest } from "../../utils/hooks/useRequest";
+import { CATEGORIES_QUERY, FEATURED_PRODUCTS_QUERY, FEATURED_BANNERS_QUERY} from "../../utils/constants";
 
 const Main = () => {
+  const featuredBanners = useRequest(FEATURED_BANNERS_QUERY);
+  const featuredProducts = useRequest(FEATURED_PRODUCTS_QUERY);
+  const productCategories = useRequest(CATEGORIES_QUERY);
+
+  const showLoading =
+    featuredBanners.isLoading ||
+    productCategories.isLoading ||
+    featuredProducts.isLoading;
 
   return (
     <main>
-        <Slider items={featuredBannersMock.results} />
-        <Carousel items={productCategoriesMock.results} />
-        <FeaturedProducts items={featuredProductsMock.results} />
+      {showLoading ? (
+        <div className="loader">
+          <i className="fa fa-spinner fa-spin"></i>
+        </div>
+      ) : (
+        <>
+          <h1>Home Page</h1>
+          <Slider items={featuredBanners.data.results} />
+          <Carousel items={productCategories.data.results} />
+          <FeaturedProducts items={featuredProducts.data.results} />
+        </>
+      )}
     </main>
   );
 };

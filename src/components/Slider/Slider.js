@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Card from "../Card/Card";
+import PropTypes from "prop-types";
 
 const Slider = ({ items }) => {
   const [showItems, setShowItems] = useState(items);
@@ -33,7 +34,13 @@ const Slider = ({ items }) => {
       <h1>Slider Section</h1>
       <article className="slider-columns">
         {showItems.map((item) => (
-          <Card key={item.id} data={getData(item)} />
+          <Card
+            key={item.id}
+            name={item.data.title}
+            url={item.data.main_image.url}
+            alt={item.data.main_image.alt}
+            classSection="slider_section"
+          />
         ))}
       </article>
       <section className="slider_controls">
@@ -42,6 +49,10 @@ const Slider = ({ items }) => {
       </section>
     </>
   );
+};
+
+Slider.propTypes = {
+  items: PropTypes.array.isRequired
 };
 
 export default Slider;
