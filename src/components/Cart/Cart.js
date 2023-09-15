@@ -5,6 +5,7 @@ import { ShoppingStateActions } from "../../utils/reducers/ShoppingCartReducer";
 
 const Cart = ({shoppingCartState,dispatchShoppingCart}) => {
   const isShoppingCartEmpty = shoppingCartState.count === 0;
+console.log(shoppingCartState);
 
   const deleteCartItem = (cartItem) => {
     dispatchShoppingCart({type: ShoppingStateActions.DELETE_ITEMS,payload: cartItem});

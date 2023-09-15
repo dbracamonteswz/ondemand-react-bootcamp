@@ -78,6 +78,7 @@ const shoppinCartReducer = (state, action) => {
 
       const { total, count } = calculateCart(newProducts);
 
+     console.log("quantity " +  copyCartInfo[indexItem].quantity);
       return {
         total: total,
         count: count,
