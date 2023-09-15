@@ -7,6 +7,7 @@ import { ShoppingStateEnums } from "../../utils/reducers/ShoppingCartReducer";
 const Cart = () => {
   const [shoppingCartState, dispatchShoppingCart] = useContext(ShoppingCartContext);
   const isShoppingCartEmpty = shoppingCartState.count === 0;
+console.log(shoppingCartState);
 
   const deleteCartItem = (cartItem) => {
     dispatchShoppingCart({type: ShoppingStateEnums.DELETE_ITEMS,payload: cartItem});
@@ -17,7 +18,8 @@ const Cart = () => {
   };
 
   const plusCartItem = (cartItemId) => {
-    dispatchShoppingCart({type: ShoppingStateEnums.ADD_ITEM,payload:{id: cartItemId, quantity:1}});
+    console.log("HandleplusCartItem" + cartItemId); 
+    dispatchShoppingCart({type: ShoppingStateEnums.PLUS_ITEM,payload:{id: cartItemId}});
   };
 
   const getTotal = shoppingCartState.cartInfo.reduce((accumulator, cartItem) => {

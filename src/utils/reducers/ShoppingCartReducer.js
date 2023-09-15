@@ -44,11 +44,14 @@ const shoppinCartReducer = (state, action) => {
       };
 
     case ShoppingStateEnums.PLUS_ITEM:
-     copyCartInfo[indexItem].quantity += 1;
+    console.log(" ShoppingStateEnums.PLUS_ITEM");
+    state.cartInfo[indexItem].quantity += 1;
 
+     console.log("quantity " +  copyCartInfo[indexItem].quantity);
       return {
         count: state.count + 1,
-        cartInfo: [...copyCartInfo],
+        cartInfo: [...state.cartInfo],
+        quantity:state.cartInfo[indexItem].quantity
       };
 
     case ShoppingStateEnums.ADD_ITEM:
