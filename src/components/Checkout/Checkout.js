@@ -1,5 +1,7 @@
 import { ShoppingCartContext } from "../../utils/context/ShoppingCartContext";
 import { useContext } from "react";
+import { formatMoney } from "../../utils/formatUtils";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const [shoppingCart] = useContext(ShoppingCartContext);
@@ -79,8 +81,8 @@ const Checkout = () => {
                     <tr key={index}>
                       <td>{cartItem.name}</td>
                       <td>{cartItem.quantity}</td>
-                      <td>{cartItem.price}</td>
-                      <td>{cartItem.price * cartItem.quantity}</td>
+                      <td>{formatMoney(cartItem.price)}</td>
+                      <td>{formatMoney(cartItem.price * cartItem.quantity)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -88,7 +90,8 @@ const Checkout = () => {
             </div>
             <br />
             <div className="row">
-              <button>Submit</button>
+              <button className="btn-submit-order">Submit Order</button>
+              <Link to="/cart"> <button className="btn-back-cart">Go back to Cart </button></Link>
             </div>
           </form>
         )}

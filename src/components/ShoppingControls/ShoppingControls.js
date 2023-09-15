@@ -19,7 +19,7 @@ const ShoppingControls = ({ cartItem }) => {
     event.preventDefault();
     dispatchShoppingCart({
       type: ShoppingStateEnums.ADD_ITEM,
-      payload: { ...cartItem, quantity: quantity},
+      payload: { ...cartItem, quantity: parseInt(quantity)},
     });
 
     setModalIsOpen(!modalIsOpen);
