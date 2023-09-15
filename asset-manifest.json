@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ondemand-react-bootcamp/static/css/main.3a4433ff.css",
-    "main.js": "/ondemand-react-bootcamp/static/js/main.5f8e61ea.js",
+    "main.js": "/ondemand-react-bootcamp/static/js/main.2eff0ca9.js",
     "static/js/787.8626abe6.chunk.js": "/ondemand-react-bootcamp/static/js/787.8626abe6.chunk.js",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/ondemand-react-bootcamp/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/fontawesome-webfont.eot": "/ondemand-react-bootcamp/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
@@ -11,11 +11,11 @@
     "static/media/logo-ecommerce.png": "/ondemand-react-bootcamp/static/media/logo-ecommerce.359baa9a0f4511a55f5e.png",
     "index.html": "/ondemand-react-bootcamp/index.html",
     "main.3a4433ff.css.map": "/ondemand-react-bootcamp/static/css/main.3a4433ff.css.map",
-    "main.5f8e61ea.js.map": "/ondemand-react-bootcamp/static/js/main.5f8e61ea.js.map",
+    "main.2eff0ca9.js.map": "/ondemand-react-bootcamp/static/js/main.2eff0ca9.js.map",
     "787.8626abe6.chunk.js.map": "/ondemand-react-bootcamp/static/js/787.8626abe6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3a4433ff.css",
-    "static/js/main.5f8e61ea.js"
+    "static/js/main.2eff0ca9.js"
   ]
 }
