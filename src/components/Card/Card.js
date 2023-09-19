@@ -1,3 +1,4 @@
+import React from "react";
 import PropTypes from "prop-types";
 import { formatMoney } from "../../utils/formatUtils";
 const Card = ({ name, price, category, url, alt, classSection }) => {

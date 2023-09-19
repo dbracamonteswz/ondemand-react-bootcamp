@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext } from "react";
 import { formatMoney } from "../../utils/formatUtils";
 import { Link } from "react-router-dom";
 import { ShoppingCartContext } from "../../utils/context/ShoppingCartContext";

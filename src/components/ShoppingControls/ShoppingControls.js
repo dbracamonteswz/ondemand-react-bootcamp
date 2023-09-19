@@ -3,17 +3,18 @@ import { ShoppingCartContext } from "../../utils/context/ShoppingCartContext";
 import { ShoppingStateEnums } from "../../utils/reducers/ShoppingCartReducer";
 import ReactModal from "react-modal";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const ShoppingControls = ({ cartItem }) => {
   const [quantity, setQuantity] = useState(0);
-  const [shoppingCartState, dispatchShoppingCart] =
+  const [,dispatchShoppingCart] =
     useContext(ShoppingCartContext);
   const isAddBtnDisabled = quantity == 0;
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
   const addBtnCartTitle = isAddBtnDisabled
     ? "Please select a quantity"
     : "Add to Cart";
-  ReactModal.setAppElement("#app");
+  ReactModal.setAppElement("main");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -76,6 +77,10 @@ const ShoppingControls = ({ cartItem }) => {
       </ReactModal>
     </div>
   );
+};
+
+ShoppingControls.propTypes = {
+  cartItem: PropTypes.object.isRequired
 };
 
 export default ShoppingControls;

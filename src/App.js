@@ -3,14 +3,14 @@ import "font-awesome/css/font-awesome.min.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Main from "./components/Main/Main";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProductListPage from "./components/ProductListPage/ProductListPage";
 import ProductDetail from "./components/ProductDetails/ProductDetails";
 import SearchResult from "./components/SearchResults/SearchResult";
 import Cart from "./components/Cart/Cart";
 import Checkout from "./components/Checkout/Checkout";
 import { ShoppingCartContext } from "./utils/context/ShoppingCartContext";
-import { useState, React, useReducer } from "react";
+import { React, useReducer } from "react";
 import shoppinCartReducer, {
   initialStateShoppingCart,
 } from "./utils/reducers/ShoppingCartReducer";

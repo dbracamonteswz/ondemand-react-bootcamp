@@ -1,3 +1,4 @@
+import React from "react";
 import { ShoppingCartContext } from "../../utils/context/ShoppingCartContext";
 import { useContext } from "react";
 import { formatMoney } from "../../utils/formatUtils";

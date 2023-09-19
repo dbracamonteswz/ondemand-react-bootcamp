@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { formatMoney } from "../../utils/formatUtils";
@@ -14,7 +14,6 @@ const ProductGridCard = ({
   id,
   stock,
 }) => {
-
   return (
     <section className={classSection}>
       <img src={url} alt={alt} />
@@ -32,7 +31,7 @@ const ProductGridCard = ({
           price: price,
           stock: stock,
           id: id,
-          imageUrl: url
+          imageUrl: url,
         }}
       />
     </section>
@@ -47,6 +46,7 @@ ProductGridCard.propTypes = {
   alt: PropTypes.string.isRequired,
   classSection: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  stock: PropTypes.number.isRequired,
 };
 
 export default ProductGridCard;

@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useLocation, Outlet } from "react-router-dom";
 import ProductGridCard from "../Card/ProductGridCard";
 import { Link } from "react-router-dom";
@@ -17,6 +17,13 @@ const ProductListPage = () => {
   const ref = useRef([]);
   const productsHook = useRequest(PRODUCTS_QUERY(pageSize, page));
   const [checkedCategoryState, setCheckedCategoryState] = useState([]);
+
+  console.log("checkedCategoryState");
+  console.log(checkedCategoryState);
+
+  console.log("products");
+  console.log(products);
+  console.log(products && products.length);
 
   const handleChangeCategory = (event) => {
     const isChecked = event.target.checked;
@@ -85,7 +92,7 @@ const ProductListPage = () => {
           <div className="product-list-wrapper">
             <aside>
               <ul ref={ref}>
-                {productCategories.data.results.map((category, index) => (
+                {productCategories.data.results.map((category) => (
                   <li key={category.id}>
                     <input
                       type="checkbox"

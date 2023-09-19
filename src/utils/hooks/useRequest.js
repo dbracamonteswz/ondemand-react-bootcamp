@@ -26,12 +26,13 @@ export function useRequest(query) {
             signal: controller.signal,
           }
         );
+
+        console.log(`${API_BASE_URL}/documents/search?ref=${apiRef}${query}`);
         const data = await response.json();
 
         setResponse({ data, isLoading: false });
       } catch (err) {
         setResponse({ data: {}, isLoading: false });
-        console.error(err);
       }
     }
 

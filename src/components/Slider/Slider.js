@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Card from "../Card/Card";
 import PropTypes from "prop-types";
 
@@ -17,16 +17,6 @@ const Slider = ({ items }) => {
       ...showItems.slice(1, showItems.length),
       ...showItems.slice(0, 1),
     ]);
-  };
-
-  const getData = (item) => {
-    return {
-      name: item.data.title,
-      url: item.data.main_image.url,
-      alt: item.data.main_image.alt,
-      classSection: "slider_section",
-      classArticle: "slider-columns",
-    };
   };
 
   return (
