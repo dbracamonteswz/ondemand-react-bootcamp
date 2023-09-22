@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Card from "../Card/Card";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -11,15 +11,6 @@ const Carousel = ({ items }) => {
 
   const handledClickNext = () => {
     setCurrentItem(currentItem == items.length - 1 ? 0 : currentItem + 1);
-  };
-
-  const getData = () => {
-    return {
-      name: items[currentItem].data.name,
-      url: items[currentItem].data.main_image.url,
-      alt: items[currentItem].data.main_image.alt,
-      classSection: "carousel_main",
-    };
   };
 
   return (

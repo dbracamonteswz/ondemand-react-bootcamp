@@ -1,5 +1,7 @@
+import React from "react";
 import { formatMoney } from "../../utils/formatUtils";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const Checkout = ({shoppingCartState}) => {
   const isShoppingCartEmpty = shoppingCartState.count === 0;
@@ -103,5 +105,10 @@ const Checkout = ({shoppingCartState}) => {
     </main>
   );
 };
+
+Checkout.propTypes = {
+  shoppingCartState: PropTypes.object.isRequired
+};
+
 
 export default Checkout;

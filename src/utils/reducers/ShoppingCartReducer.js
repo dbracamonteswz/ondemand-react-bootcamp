@@ -1,8 +1,9 @@
-export const ShoppingStateEnums = {
-  DELETE_ITEMS: 0,
-  MINUS_ITEM: 1,
-  ADD_ITEM: 2,
-  PLUS_ITEM: 3,
+import { calculateCart } from "../shoppingCartUtils";
+export const ShoppingStateActions = {
+  DELETE_ITEMS: "DELETE_ITEMS",
+  MINUS_ITEM: "MINUS_ITEM",
+  ADD_ITEM: "ADD_ITEM",
+  PLUS_ITEM: "PLUS_ITEM",
 };
 
 export const initialStateShoppingCart = {
@@ -78,7 +79,6 @@ const shoppinCartReducer = (state, action) => {
 
       const { total, count } = calculateCart(newProducts);
 
-     console.log("quantity " +  copyCartInfo[indexItem].quantity);
       return {
         total: total,
         count: count,

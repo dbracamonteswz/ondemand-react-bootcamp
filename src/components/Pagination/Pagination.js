@@ -7,20 +7,20 @@ const Pagination = ({ page, totalPages, handleSetPage }) => {
   return (
     <div className="pagination-container">
       <div className="pagination-controls">
-        <button onClick={() => handleSetPage(prevPage)}>&laquo;</button>
+        <button onClick={() => handleSetPage(prevPage)} className="btn-pagination" disabled={page == 1}>&laquo;</button>
         {[...Array(totalPages + 1)].map(
           (x, i) =>
             i != 0 && (
               <button
                 key={i}
-                className={i == page ? "active" : ""}
+                className={i == page ? "btn-pagination active" : "btn-pagination"}
                 onClick={() => handleSetPage(i)}
               >
                 {i} {x}
               </button>
             )
         )}
-        <button onClick={() => handleSetPage(nextPage)}>&raquo;</button>
+        <button onClick={() => handleSetPage(nextPage)} className="btn-pagination" disabled={page === totalPages} >&raquo;</button>
       </div>
     </div>
   );

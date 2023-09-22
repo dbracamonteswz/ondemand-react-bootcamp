@@ -1,3 +1,4 @@
+import React from "react";
 import ProductGridCard from "../Card/ProductGridCard";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -20,7 +21,7 @@ const FeaturedProducts = ({ items }) => {
               price={item.data.price}
               category={item.data.category.slug}
               url={item.data.mainimage.url}
-              alt={item.data.category.slug}
+              alt={item.data.name}
               id={item.id}
               stock={item.data.stock}
               classSection="grid-section"

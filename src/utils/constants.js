@@ -4,10 +4,10 @@ export const CATEGORIES_QUERY = `&q=[[at(document.type, "category")]]&lang=en-us
 
 export const FEATURED_PRODUCTS_QUERY = `&q=[[at(document.type, "product")]]]]&q=[[at(document.tags, ["Featured"])]]&lang=en-us&pageSize=16`;
 
-export const FEATURED_BANNERS_QUERY = `&q=[[at(document.type, "banner")]]&lang=en-us&pageSize=5`;
+export const FEATURED_BANNERS_QUERY = `&q=[[at(document.type, "banner")]]&lang=en-us&pageSize=6`;
 
 export const PRODUCTS_QUERY = (pageSize, page) =>
-  `&q=[[at(document.type, "product")]]&lang=en-us&pageSize${pageSize}&page=${page}`;
+  `&q=[[at(document.type, "product")]]&lang=en-us&pageSize=${pageSize}&page=${page}`;
 
 export const PRODUCT_DETAIL_QUERY = (productId) =>
   `&q=[[at(document.id,"${productId}")]]`;

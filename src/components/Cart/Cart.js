@@ -1,11 +1,11 @@
-import React, { useContext, useReducer } from "react";
+import React from "react";
 import { formatMoney } from "../../utils/formatUtils";
 import { Link } from "react-router-dom";
 import { ShoppingStateActions } from "../../utils/reducers/ShoppingCartReducer";
+import PropTypes from "prop-types";
 
 const Cart = ({shoppingCartState,dispatchShoppingCart}) => {
   const isShoppingCartEmpty = shoppingCartState.count === 0;
-console.log(shoppingCartState);
 
   const deleteCartItem = (cartItem) => {
     dispatchShoppingCart({type: ShoppingStateActions.DELETE_ITEMS,payload: cartItem});
@@ -90,6 +90,11 @@ console.log(shoppingCartState);
       </div>
     </main>
   );
+};
+
+Cart.propTypes = {
+  shoppingCartState: PropTypes.object.isRequired,
+  dispatchShoppingCart:  PropTypes.func.isRequired,
 };
 
 export default Cart;

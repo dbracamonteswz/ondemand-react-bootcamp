@@ -1,7 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, {useState } from "react";
 import { ShoppingStateActions } from "../../utils/reducers/ShoppingCartReducer";
 import ReactModal from "react-modal";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const ShoppingControls = ({
   cartItem,
@@ -14,7 +15,7 @@ const ShoppingControls = ({
   const addBtnCartTitle = isAddBtnDisabled
     ? "Please select a quantity"
     : "Add to Cart";
-  ReactModal.setAppElement("#app");
+  ReactModal.setAppElement("main");
 
   // Get Product from Cart
   const productInCart = shoppingCartState.products.find(
@@ -85,6 +86,12 @@ const ShoppingControls = ({
       </ReactModal>
     </div>
   );
+};
+
+ShoppingControls.propTypes = {
+  cartItem: PropTypes.object.isRequired,
+  shoppingCartState: PropTypes.object.isRequired,
+  dispatchShoppingCart:  PropTypes.func.isRequired
 };
 
 export default ShoppingControls;

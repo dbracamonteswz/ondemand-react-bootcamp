@@ -1,3 +1,4 @@
+import React, {useContext} from "react";
 import SwiperCore, {
   Navigation,
   Pagination,
@@ -10,12 +11,14 @@ import "swiper/swiper.min.css";
 import PropTypes from "prop-types";
 import { formatMoney } from "../../utils/formatUtils";
 import ShoppingControls from "../ShoppingControls/ShoppingControls";
+import { ShoppingCartContext } from "../../utils/context/ShoppingCartContext";
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, EffectFade, Autoplay]);
 
 const ProductDetailCard = ({ product }) => {
-
+  const [shoppingCartState, dispatchShoppingCart] =
+    useContext(ShoppingCartContext);
   return (
     <section className="product-card">
       <Swiper
@@ -64,12 +67,14 @@ const ProductDetailCard = ({ product }) => {
         </tbody>
       </table>
       <ShoppingControls
+        shoppingCartState={shoppingCartState}
+        dispatchShoppingCart={dispatchShoppingCart}
         cartItem={{
           id: product.id,
           name: product.data.name,
           price: product.data.price,
           stock: product.data.stock,
-          imageUrl: product.data.mainimage.url
+          imageUrl: product.data.mainimage.url,
         }}
       />
     </section>

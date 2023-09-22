@@ -1,4 +1,4 @@
-import { useRequest } from "../../utils/hooks/useRequest";
+import React,{ useRequest } from "../../utils/hooks/useRequest";
 import { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import Pagination from "../Pagination/Pagination";
