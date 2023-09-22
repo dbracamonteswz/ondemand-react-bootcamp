@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const FeaturedProducts = ({ items }) => {
+
+  
   return (
     <>
       <h1>Featured Products</h1>
@@ -10,8 +12,8 @@ const FeaturedProducts = ({ items }) => {
         <button id="show-products-btn">View all products</button>
       </Link>
       <article className="grid-columns">
-        {items.map((item) => {
-          return (
+        {items.map((item) => 
+           (
             <ProductGridCard
               key={item.id}
               name={item.data.name}
@@ -20,10 +22,11 @@ const FeaturedProducts = ({ items }) => {
               url={item.data.mainimage.url}
               alt={item.data.category.slug}
               id={item.id}
+              stock={item.data.stock}
               classSection="grid-section"
             />
-          );
-        })}
+          ))
+        }
       </article>
     </>
   );

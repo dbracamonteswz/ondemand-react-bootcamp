@@ -113,6 +113,7 @@ const ProductListPage = () => {
                     url={item.data.mainimage.url}
                     alt={item.data.mainimage.alt}
                     id={item.id}
+                    stock={item.data.stock}
                     classSection="grid-section"
                   />
                 ))
