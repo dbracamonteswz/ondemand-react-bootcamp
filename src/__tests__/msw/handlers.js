@@ -5,6 +5,8 @@ import featuredBanners from "../../mocks/en-us/featured-banners.json";
 import featuredProducts from "../../mocks/en-us/featured-products.json";
 import productCategories from "../../mocks/en-us/product-categories.json";
 import products  from "../../mocks/en-us/products.json";
+import searchProducts  from "../../mocks/en-us/search-product.json";
+import productDetail from '../../mocks/en-us/product-detail.json';
 
 import latestApi from "../../mocks/en-us/latest-api.json";
 
@@ -36,6 +38,13 @@ const basehandler = rest.get(baseUrl, async (req, res, ctx) => {
     case "16":
         response = featuredProducts;
         break;
+    
+    case "20":
+      response = searchProducts;
+    break;
+
+    default:
+      response = productDetail;
   }
 
   return res(ctx.json(response));

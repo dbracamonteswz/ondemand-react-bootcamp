@@ -77,7 +77,7 @@ const ProductListPage = () => {
           <i className="fa fa-spinner fa-spin"></i>
         </div>
       ) : (
-        <>
+        <div data-testid='product-list-section'>
           <Link to="/home">
             <button>Home Page</button>
           </Link>
@@ -130,7 +130,7 @@ const ProductListPage = () => {
             />
           </div>
           <Outlet />
-        </>
+        </div>
       )}
     </main>
   );

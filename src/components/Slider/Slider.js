@@ -20,7 +20,7 @@ const Slider = ({ items }) => {
   };
 
   return (
-    <>
+    <div data-testid='slider-section'>
       <h1>Slider Section</h1>
       <article className="slider-columns">
         {showItems.map((item) => (
@@ -37,7 +37,7 @@ const Slider = ({ items }) => {
         <button onClick={handledClickPrevious}>Previous</button>
         <button onClick={handledClickNext}>Next</button>
       </section>
-    </>
+    </div>
   );
 };
 

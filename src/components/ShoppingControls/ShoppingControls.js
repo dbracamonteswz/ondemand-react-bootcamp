@@ -15,7 +15,7 @@ const ShoppingControls = ({
   const addBtnCartTitle = isAddBtnDisabled
     ? "Please select a quantity"
     : "Add to Cart";
-  ReactModal.setAppElement("main");
+  ReactModal.setAppElement(document.getElementsByTagName('main'));
 
   // Get Product from Cart
   const productInCart = shoppingCartState.products.find(

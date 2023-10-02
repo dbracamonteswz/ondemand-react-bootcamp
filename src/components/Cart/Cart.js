@@ -23,7 +23,7 @@ const Cart = ({shoppingCartState,dispatchShoppingCart}) => {
 
   return (
     <main>
-      <div className="shopping-cart">
+      <div className="shopping-cart" data-testid='shopping-cart-section'>
         {isShoppingCartEmpty ? (
           <h2>ShoppingCart is empty</h2>
         ) : (
@@ -38,7 +38,7 @@ const Cart = ({shoppingCartState,dispatchShoppingCart}) => {
                   ></button>
                 </div>
                 <div className="image">
-                  <img src={cartItem.imageUrl} alt="" />
+                  <img src={cartItem.imageUrl} alt={cartItem.name} />
                 </div>
 
                 <div className="description">

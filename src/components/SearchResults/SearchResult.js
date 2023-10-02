@@ -32,7 +32,7 @@ const SearchResult = () => {
           <i className="fa fa-spinner fa-spin"></i>
         </div>
       ) : (
-        <>
+        <div data-testid='search-section'>
           <Link to="/home">
             <button>Home Page</button>
           </Link>
@@ -63,7 +63,7 @@ const SearchResult = () => {
             totalPages={searchResultHook.data.total_pages}
             handleSetPage={handleSetPage}
           />
-        </>
+        </div>
       )}
     </main>
   );

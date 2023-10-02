@@ -1,13 +1,11 @@
 import {
   render,
   screen,
-  act,
-  waitFor,
   fireEvent,
   cleanup,
+  within,
 } from "@testing-library/react";
 import { mswServer } from "./msw/msw-server";
-import App from "../App";
 import ProductListPage from "../components/ProductListPage/ProductListPage";
 import { BrowserRouter } from "react-router-dom";
 import { ShoppingCartContext } from "../utils/context/ShoppingCartContext";
@@ -21,108 +19,191 @@ afterEach(() => {
 afterAll(() => mswServer.close());
 
 describe("Testing Product List Page", () => {
-  it("3.1. Product Category Sidebar is fetching and rendering data from the API", async () => {
+  it("Should render and fetch Product Category Sidebar from the API", async () => {
     const dispatchCart = jest.fn();
 
     render(
-      <ShoppingCartContext.Provider value={[initialStateShoppingCart, dispatchCart]}>
+      <ShoppingCartContext.Provider
+        value={[initialStateShoppingCart, dispatchCart]}
+      >
         <BrowserRouter>
           <ProductListPage />
         </BrowserRouter>
       </ShoppingCartContext.Provider>
     );
 
-    await waitFor(() => {
-      expect(
-        screen.getByText("This is the Product List Page")
-      ).toBeInTheDocument();
+    const productListSection = within(
+      await screen.findByTestId("product-list-section")
+    );
+    expect(
+      productListSection.getByText("This is the Product List Page")
+    ).toBeInTheDocument();
 
-      //validate that category
-      expect(screen.getByText("Bed & Bath")).toBeInTheDocument();
-      expect(screen.getByText("Lighting")).toBeInTheDocument();
-      expect(screen.getByText("Kitchen")).toBeInTheDocument();
-      expect(screen.getByText("Furniture")).toBeInTheDocument();
-    });
+    expect(productListSection.getByText("Bed & Bath")).toBeInTheDocument();
+    expect(productListSection.getByText("Lighting")).toBeInTheDocument();
+    expect(productListSection.getByText("Kitchen")).toBeInTheDocument();
+    expect(productListSection.getByText("Furniture")).toBeInTheDocument();
   });
 
-  it("3.2. Product Category Sidebar is fetching and rendering data from the API", async () => {
+  it("Should filter and fetch Products Grid by category", async () => {
     const dispatchCart = jest.fn();
 
     render(
-      <ShoppingCartContext.Provider value={[initialStateShoppingCart, dispatchCart]}>
+      <ShoppingCartContext.Provider
+        value={[initialStateShoppingCart, dispatchCart]}
+      >
         <BrowserRouter>
           <ProductListPage />
         </BrowserRouter>
       </ShoppingCartContext.Provider>
     );
 
-    await waitFor(() => {
-      const checkboxCategory = screen.getAllByRole("checkbox");
+    const productListSection = within(
+      await screen.findByTestId("product-list-section")
+    );
+    const checkboxCategory = productListSection.getAllByRole("checkbox");
+    fireEvent.click(checkboxCategory[1]);
 
-      //clicking lightning category , there isnt any result for this category
-      fireEvent.click(checkboxCategory[1]);
-
-      expect(
-        screen.getByText("No products found with the categories selected")
-      ).toBeInTheDocument();
-    });
+    expect(
+      productListSection.getByText(
+        "No products found with the categories selected"
+      )
+    ).toBeInTheDocument();
   });
 
-  it("3.3. Pagination Controls are generated correctly based on the number of results fetched from the API and the maximum number of products per page", async () => {
+  it("Should Show Pagination Controls based on the pages number return by the api", async () => {
+    const dispatchCart = jest.fn();
+
+    render(
+      <ShoppingCartContext.Provider
+        value={[initialStateShoppingCart, dispatchCart]}
+      >
+        <BrowserRouter>
+          <ProductListPage />
+        </BrowserRouter>
+      </ShoppingCartContext.Provider>
+    );
+
+    const productListSection = within(
+      await screen.findByTestId("product-list-section")
+    );
+    const paginationContainer = within(
+      await productListSection.findByTestId("pagination-container")
+    );
+    const btnPaginationArray = paginationContainer.getAllByRole("button");
+
+    // there are 3 buttons for pages and two for prev and next page
+    expect(btnPaginationArray.length).toBe(5);
+    //first btnPage is active, prevbtn is disabled
+    expect(btnPaginationArray[1]).toHaveClass("active");
+    expect(btnPaginationArray[0]).toBeDisabled();
+  });
+
+  it("Should Show Prev Button as disabled when user is in the first page", async () => {
     const dispatchCart = jest.fn();
 
     const { container } = render(
-      <ShoppingCartContext.Provider value={[initialStateShoppingCart, dispatchCart]}>
+      <ShoppingCartContext.Provider
+        value={[initialStateShoppingCart, dispatchCart]}
+      >
         <BrowserRouter>
           <ProductListPage />
         </BrowserRouter>
       </ShoppingCartContext.Provider>
     );
 
-    const btnPagination = container.getElementsByClassName("btn-pagination");
+    const productListSection = within(
+      await screen.findByTestId("product-list-section")
+    );
+    const paginationContainer = within(
+      await productListSection.findByTestId("pagination-container")
+    );
+    const btnPaginationArray = paginationContainer.getAllByRole("button");
 
-    await waitFor(() => {
-      // there are 3 buttons for pages and two for prev and next page
-      expect(btnPagination.length).toBe(5);
-      //first btnPage is active, prevbtn is disabled
-      expect(btnPagination[1]).toHaveClass("active");
-      expect(btnPagination[0]).toBeDisabled();
-    });
+    //first btnPage is active, prevbtn is disabled
+    expect(btnPaginationArray[1]).toHaveClass("active");
+    expect(btnPaginationArray[0]).toBeDisabled();
   });
 
-  it("3.5. Next button  and prev is working as expected", async () => {
+  it("Should Work Next Button as expected", async () => {
     const dispatchCart = jest.fn();
-
-    const { container } = render(
-      <ShoppingCartContext.Provider value={[initialStateShoppingCart, dispatchCart]}>
+    render(
+      <ShoppingCartContext.Provider
+        value={[initialStateShoppingCart, dispatchCart]}
+      >
         <BrowserRouter>
           <ProductListPage />
         </BrowserRouter>
       </ShoppingCartContext.Provider>
     );
 
-    const btnPagination = container.getElementsByClassName("btn-pagination");
+    const productListSection = within(
+      await screen.findByTestId("product-list-section")
+    );
+    const paginationContainer = within(
+      await productListSection.findByTestId("pagination-container")
+    );
+    const btnPaginationArray = paginationContainer.getAllByRole("button");
 
-    await waitFor(() => {
-      //clicking last page
-      fireEvent.click(btnPagination[3]);
-      //last page is active
-      expect(btnPagination[3]).toHaveClass("active");
-      // next page is disabled
-      expect(btnPagination[4]).toBeDisabled();
-    });
+    //Current page 1 after clicking next btn , page2 btn should have class active
+    fireEvent.click(btnPaginationArray[4]);
+    expect(btnPaginationArray[2]).toHaveClass("active");
+  });
 
-    await waitFor(() => {
-     // clicking prevPage
-      fireEvent.click(btnPagination[0]);
-      expect(btnPagination[2]).toHaveClass("active");
-    });
+  it("Should Work Prev Button as expected", async () => {
+    const dispatchCart = jest.fn();
+    render(
+      <ShoppingCartContext.Provider
+        value={[initialStateShoppingCart, dispatchCart]}
+      >
+        <BrowserRouter>
+          <ProductListPage />
+        </BrowserRouter>
+      </ShoppingCartContext.Provider>
+    );
 
-    await waitFor(() => {
-      // clicking nextPage
-      fireEvent.click(btnPagination[4]);
-      expect(btnPagination[3]).toHaveClass("active");
-      expect(btnPagination[4]).toBeDisabled(); 
-    });
+    const productListSection = within(
+      await screen.findByTestId("product-list-section")
+    );
+    const paginationContainer = within(
+      await productListSection.findByTestId("pagination-container")
+    );
+    const btnPaginationArray = paginationContainer.getAllByRole("button");
+
+    // active page is 1 when page is load
+    expect(btnPaginationArray[1]).toHaveClass("active");
+
+    // after clickling next, active page is 2
+    fireEvent.click(btnPaginationArray[4]);
+    expect(btnPaginationArray[2]).toHaveClass("active");
+
+    // clicking prev page , active should be 1 again
+    fireEvent.click(btnPaginationArray[0]);
+    expect(btnPaginationArray[1]).toHaveClass("active");
+  });
+
+  it("Should Show Next button as  disabled when the user is on the last page", async () => {
+    const dispatchCart = jest.fn();
+    render(
+      <ShoppingCartContext.Provider
+        value={[initialStateShoppingCart, dispatchCart]}
+      >
+        <BrowserRouter>
+          <ProductListPage />
+        </BrowserRouter>
+      </ShoppingCartContext.Provider>
+    );
+
+    const productListSection = within(
+      await screen.findByTestId("product-list-section")
+    );
+    const paginationContainer = within(
+      await productListSection.findByTestId("pagination-container")
+    );
+    const btnPaginationArray = paginationContainer.getAllByRole("button");
+
+    fireEvent.click(btnPaginationArray[3]);
+    //Next btn is disabled
+    expect(btnPaginationArray[4]).toBeDisabled();
   });
 });

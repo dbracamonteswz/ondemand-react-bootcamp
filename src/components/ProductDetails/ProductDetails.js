@@ -22,7 +22,7 @@ const ProductDetail = () => {
       <i className="fa fa-spinner fa-spin"></i>
     </div>
   ) : product ? (
-    <main>
+    <main data-testid='product-detail-section'>
       <ProductDetailCard product={product} />
     </main>
   ) : (

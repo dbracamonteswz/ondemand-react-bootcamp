@@ -7,7 +7,7 @@ const FeaturedProducts = ({ items }) => {
 
   
   return (
-    <>
+    <div data-testid='featured-products-section'>
       <h1>Featured Products</h1>
       <Link to="/products">
         <button id="show-products-btn">View all products</button>
@@ -29,7 +29,7 @@ const FeaturedProducts = ({ items }) => {
           ))
         }
       </article>
-    </>
+    </div>
   );
 };
 

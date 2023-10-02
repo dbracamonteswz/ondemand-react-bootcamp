@@ -5,7 +5,7 @@ const Pagination = ({ page, totalPages, handleSetPage }) => {
   const nextPage = page < totalPages ? page + 1 : totalPages;
 
   return (
-    <div className="pagination-container">
+    <div className="pagination-container" data-testid='pagination-container'>
       <div className="pagination-controls">
         <button onClick={() => handleSetPage(prevPage)} className="btn-pagination" disabled={page == 1}>&laquo;</button>
         {[...Array(totalPages + 1)].map(

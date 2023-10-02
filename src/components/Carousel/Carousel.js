@@ -14,7 +14,7 @@ const Carousel = ({ items }) => {
   };
 
   return (
-    <>
+    <div data-testid='carousel-section' >
       <Card
         key={items[currentItem].id}
         name={items[currentItem].data.name}
@@ -34,7 +34,7 @@ const Carousel = ({ items }) => {
         <button onClick={handledClickPrevious}>Previous</button>
         <button onClick={handledClickNext}>Next</button>
       </section>
-    </>
+    </div>
   );
 };
 
