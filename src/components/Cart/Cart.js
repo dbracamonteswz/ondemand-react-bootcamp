@@ -1,8 +1,8 @@
-import React, { useContext, useReducer } from "react";
+import React from "react";
 import { formatMoney } from "../../utils/formatUtils";
 import { Link } from "react-router-dom";
-import { ShoppingCartContext } from "../../utils/context/ShoppingCartContext";
 import { ShoppingStateActions } from "../../utils/reducers/ShoppingCartReducer";
+import PropTypes from "prop-types";
 
 const Cart = ({shoppingCartState,dispatchShoppingCart}) => {
   const isShoppingCartEmpty = shoppingCartState.count === 0;
@@ -23,7 +23,7 @@ const Cart = ({shoppingCartState,dispatchShoppingCart}) => {
 
   return (
     <main>
-      <div className="shopping-cart">
+      <div className="shopping-cart" data-testid='shopping-cart-section'>
         {isShoppingCartEmpty ? (
           <h2>ShoppingCart is empty</h2>
         ) : (
@@ -38,7 +38,7 @@ const Cart = ({shoppingCartState,dispatchShoppingCart}) => {
                   ></button>
                 </div>
                 <div className="image">
-                  <img src={cartItem.imageUrl} alt="" />
+                  <img src={cartItem.imageUrl} alt={cartItem.name} />
                 </div>
 
                 <div className="description">
@@ -90,6 +90,11 @@ const Cart = ({shoppingCartState,dispatchShoppingCart}) => {
       </div>
     </main>
   );
+};
+
+Cart.propTypes = {
+  shoppingCartState: PropTypes.object.isRequired,
+  dispatchShoppingCart:  PropTypes.func.isRequired,
 };
 
 export default Cart;

@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useLocation, Outlet } from "react-router-dom";
 import ProductGridCard from "../Card/ProductGridCard";
 import { Link } from "react-router-dom";
@@ -77,7 +77,7 @@ const ProductListPage = () => {
           <i className="fa fa-spinner fa-spin"></i>
         </div>
       ) : (
-        <>
+        <div data-testid='product-list-section'>
           <Link to="/home">
             <button>Home Page</button>
           </Link>
@@ -85,7 +85,7 @@ const ProductListPage = () => {
           <div className="product-list-wrapper">
             <aside>
               <ul ref={ref}>
-                {productCategories.data.results.map((category, index) => (
+                {productCategories.data.results.map((category) => (
                   <li key={category.id}>
                     <input
                       type="checkbox"
@@ -130,7 +130,7 @@ const ProductListPage = () => {
             />
           </div>
           <Outlet />
-        </>
+        </div>
       )}
     </main>
   );

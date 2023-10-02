@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import  React, { useEffect, useState } from "react";
 import { useRequest } from "../../utils/hooks/useRequest";
 import { useParams } from "react-router-dom";
 import ProductDetailCard from "../Card/ProductDetailCard";
@@ -22,7 +22,7 @@ const ProductDetail = () => {
       <i className="fa fa-spinner fa-spin"></i>
     </div>
   ) : product ? (
-    <main>
+    <main data-testid='product-detail-section'>
       <ProductDetailCard product={product} />
     </main>
   ) : (

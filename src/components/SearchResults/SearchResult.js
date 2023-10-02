@@ -1,4 +1,4 @@
-import { useRequest } from "../../utils/hooks/useRequest";
+import React,{ useRequest } from "../../utils/hooks/useRequest";
 import { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import Pagination from "../Pagination/Pagination";
@@ -32,7 +32,7 @@ const SearchResult = () => {
           <i className="fa fa-spinner fa-spin"></i>
         </div>
       ) : (
-        <>
+        <div data-testid='search-section'>
           <Link to="/home">
             <button>Home Page</button>
           </Link>
@@ -63,7 +63,7 @@ const SearchResult = () => {
             totalPages={searchResultHook.data.total_pages}
             handleSetPage={handleSetPage}
           />
-        </>
+        </div>
       )}
     </main>
   );

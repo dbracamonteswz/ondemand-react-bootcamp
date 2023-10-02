@@ -3,7 +3,7 @@ import "font-awesome/css/font-awesome.min.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Main from "./components/Main/Main";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProductListPage from "./components/ProductListPage/ProductListPage";
 import ProductDetail from "./components/ProductDetails/ProductDetails";
 import SearchResult from "./components/SearchResults/SearchResult";

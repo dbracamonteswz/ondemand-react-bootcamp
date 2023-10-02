@@ -1,0 +1,14 @@
+{
+    "total":80,
+    "count":2,
+    "products":[
+       {
+          "name":"Fair Isle Snowflake Lumbar Cushion Cover",
+          "price":40,
+          "stock":2,
+          "id":"YZZ_XhIAAC0AvmiA",
+          "imageUrl":"https://images.prismic.io/wizeline-academy/1c8883ca-2797-4138-a7e5-a7d2ae583192_1.jpeg?auto=compress,format",
+          "quantity":2
+       }
+    ]
+ }

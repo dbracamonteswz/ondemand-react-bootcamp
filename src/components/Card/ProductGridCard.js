@@ -29,7 +29,9 @@ const ProductGridCard = ({
         <button className="btn-details">Go to Details</button>
       </Link>
 
-      <ShoppingControls shoppingCartState={shoppingCartState} dispatchShoppingCart={dispatchShoppingCart}
+      <ShoppingControls
+        shoppingCartState={shoppingCartState}
+        dispatchShoppingCart={dispatchShoppingCart}
         cartItem={{
           name: name,
           price: price,
@@ -50,6 +52,7 @@ ProductGridCard.propTypes = {
   alt: PropTypes.string.isRequired,
   classSection: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  stock: PropTypes.number,
 };
 
 export default ProductGridCard;

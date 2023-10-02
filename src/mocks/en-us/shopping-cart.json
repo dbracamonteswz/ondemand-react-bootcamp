@@ -1,0 +1,30 @@
+{
+    "total":784,
+    "count":14,
+    "products":[
+       {
+          "name":"Cojín Faye Azul",
+          "price":41,
+          "stock":49,
+          "id":"YZZ-ThIAAC4AvmNn",
+          "imageUrl":"https://images.prismic.io/wizeline-academy/39db837a-8a39-48fc-9937-5d496027bc79_1.jpeg?auto=compress,format",
+          "quantity":10
+       },
+       {
+          "name":"Desk Lamp Ezra",
+          "price":147,
+          "stock":9,
+          "id":"YZZ6OhIAACgAvlE1",
+          "imageUrl":"https://images.prismic.io/wizeline-academy/267ca459-c37b-4187-a59e-9e7c55e0b09a_1.webp?auto=compress,format",
+          "quantity":2
+       },
+       {
+          "name":"Fair Isle Snowflake Lumbar Cushion Cover",
+          "price":40,
+          "stock":3,
+          "id":"YZZ_XhIAAC0AvmiA",
+          "imageUrl":"https://images.prismic.io/wizeline-academy/1c8883ca-2797-4138-a7e5-a7d2ae583192_1.jpeg?auto=compress,format",
+          "quantity":2
+       }
+    ]
+ }

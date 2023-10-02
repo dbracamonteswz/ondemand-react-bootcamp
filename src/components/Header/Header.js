@@ -1,3 +1,4 @@
+import React from "react";
 import logoEcommerce from "../../logo-ecommerce.png";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
